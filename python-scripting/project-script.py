@@ -10,43 +10,26 @@ os.chdir(directory)
 #set working directory in analyses directory bc that's where the csv file is
 
 
-
-
-data = 'final_data.csv'
-def numpy(pandas_data):
-    og_data = pandas.read_csv(pandas_data, delimiter=',')
-    new_data = og_data.to_numpy()
-    return (new_data)
-#analyze the csv file
-data = numpy(data)
-#input the data file into the function
-
-
-data = pandas.read_csv('final_data.csv')
-columns = list(data.columns)
-columns = columns[4:-1]
-
-#A = is X a disease (rank from 1-5)
-#B = should public funding be used for X (rank 1-5)
 import csv
 import re
 data = pandas.read_csv('final_data.csv')
-data = data.rename(columns={'Restless Legs SyndromeA.1':'Restless Legs SyndromeB', 'Personality DisorderA.1':'Personality DisorderB'})
-columns = list(data.columns)
-columns = columns[4:-1]
+data = data.rename(columns={'Restless Legs SyndromeA.1':'Restless Legs SyndromeB', 'Personality DisorderA.1':'Personality DisorderB'}) #some columns were oddly names
+columns = list(data.columns) #turn the columns into a list
+columns = columns[4:-1] #only use columns from these indexes bc they are the conditions
 
+#A = is X a disease (rank from 1-5)
 regex = re.compile(r'[\w\s]*[^A]A{1}$')
 columnsA = list(filter(regex.match,columns))
 
+#B = should public funding be used for X (rank 1-5)
 regex = re.compile(r'[\w\s]*[^B]B{1}$')
 columnsB = list(filter(regex.match,columns))
 
 
-dis = str(input("what disease do you want to compare?: "))
-#ask what disease to evaluate
-dis = dis.upper()
+dis = str(input("what disease do you want to compare?: ")) #ask user what disease to evaluate
+dis = dis.upper() #make input uppercase bc column names uppercase
 dis = dis.split()
-error = False
+error = False #for/if statement corrects for incorrect name input
 for word in dis:
     if word in columnsA:
         pass
@@ -54,23 +37,20 @@ for word in dis:
         error = True
 if error: print('Please enter a valid condition')
 else:
-    def listtostring(s):
+    def listtostring(s): #
         str1 = " "
         return(str1.join(s))
     dis = listtostring(dis)
-    dataset = pandas.read_csv('final_data.csv')
-    df = pandas.DataFrame(dataset)
-    df = df[['Group', dis]]
-    #extract data columns for people surveyed, and disease selected by user
+    df = pandas.DataFrame(data)
+    df = df[['Group', dis]] #extract data columns for people surveyed, and disease selected by user
 
     from collections import Counter
 
     classify = str(input('Percent of participants that considered {} as a disease on a scale from 1-5: '.format(dis)))
     #find percent of people who classified X as a disease on a scale from 1-5
     #choose a number on the scale
-    error = False
+    error = False #for/if statement corrects for incorrect rank input
     number = [str(i) for i in range(1,6)]
-    #number = map(str, range(1, 6))
     for rank in classify:
         if rank in number:
             pass
