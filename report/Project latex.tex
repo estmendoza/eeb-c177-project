@@ -1,0 +1,67 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{lingmacros}
+\usepackage{tree-dvips}
+\usepackage{graphicx}
+\graphicspath{Documents/}
+\setlength\parindent{24pt}
+\usepackage{listings}
+\usepackage{pdfpages, caption}
+\usepackage{float}
+\floatplacement{figure}{H}
+\lstset{breaklines=true}
+
+\title{Final Project}
+\author{Esteban Mendoza}
+\date{March 2020}
+
+\begin{document}
+\maketitle
+\section{Abstract}
+
+\newpage
+\tableofcontents
+\newpage
+
+
+\section{Introduction}
+\par A disease is a condition that negatively affects the structure and hinders the homeostatic functions of an organism. Disease is characterized by specific symptoms exhibited by the affected organism. As medical technology has grown, so has the access to treatments that relieve the symptoms and repair the malfunctions caused by disease. Unfortunately, the costs to develop and employ these innovations have proven to be expensive and unaffordable for most people seeking treatment. In a society where resources to expend on healthcare are scarce, it is important to question how we can effectively allocate limited resources to maintain the health of the general public. Diseases can be categorized into different classifications, such as communicable and non-communicable. Additionally, these diseases can be categorized as infectious, deficiency, hereditary, and physiological diseases. However, assigning “disease” to a condition is a subjective topic. Studies have shown that different factors account for whether people believe themselves to be ill. Some of these factors include class, gender, ethnic group “and less obvious factors such as proximity to support from family members” \cite{Scully2004}. Additionally, as expectations of health change throughout time, so does the classification of something as a disease. \par
+For example, osteoporosis was “officially recognized as a disease by the WHO in 1994” \cite{Scully2004}. This classification changed osteoporosis from a “normal part of aging” to a recognized pathological condition. Homosexuality has also had a history in the classification of disease. In the early 20th century, homosexuality was considered an endocrine disorder, then later classified as a mental disorder, and then finally “de-pathologized” in 1974. It’s important to properly identify a condition as a disease in order to properly allocate resources for treatment, while also being conscious of the weight and stigmatization that the label “disease” might carry. \par
+In the analysis of this dataset, I attempt to identify what different members of society classify as a disease, and how much public funding should go into their management. The data used to inform this analysis was collected in a survey form. The survey was sent out to Finnish laypeople, doctors, nurses, and parliament members. The purpose of the survey was to collect opinions on different states of being and identify how these people classified them.
+
+
+\section{Materials \& Methods}
+\subsection{Script}
+The following script works from the shell. It asks the user to select a "state of being." Then the user is asked to select a rank from 1-5. The rank they choose will produce a graph that highlights the percentage of people (doctors, nurses, laypeople, and parliament members) that considered the selected "state of being" as a disease (1-2: not a disease; 3: neutral; 4-5: yes a disease). 
+\lstinputlisting[language=Python]{script.py}
+
+\subsection{Raw Data Visuals}
+The following code was used to provide a visualization of averages from the raw data file. The figures produced show demographic rankings for the two survey questions asked. Figure \ref{fig:disease} demonstrates the mean ranks for each of the "states of being" that each demographic would consider a disease. Ranks 4-5 indicate a disease, and ranks 1-2 indicate not a disease. Figure \ref{fig:funding} demonstrates the mean ranks for each of the "states of being" that each demographic would consider using public funds for its management. Ranks 4-5 indicate support for the use of public funding, and ranks 1-2 indicate no public funding should be invested.
+\subsubsection{Code}
+\lstinputlisting[language=R]{introvisuals.R}
+
+\subsubsection{Graphical Data}
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1.0\textwidth]{disease.pdf}
+  \caption{Demographic rankings for disease consideration}
+  \label{fig:disease}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1.0\textwidth]{funding.pdf}
+  \caption{Demographic rankings for funding consideration}
+  \label{fig:funding}
+\end{figure}
+
+\section{Results}
+
+
+\section{Discussion}
+
+\newpage
+\bibliographystyle{plain}
+\bibliography{mybib} 
+
+\end{document}
